@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <header>
+        <h1>Formulario</h1>
+    </header>
+
+    <main>
+        <form>
+            <label for="first-name">Nombre: <input type="text" name="first-name" id="first-name" required></label>
+            <button onclick="validarNombre()">Validar</button>
+            <p id="mensajeError"></p>
+            <br>
+            <label for="last-name">Apellido: <input type="text" name="last-name" id="last-name"  required></label>
+            <button onclick="validarApellido()">Validar</button>
+            <p id="mensajeError2"></p>
+            <br>
+            <label for="age">Edad: <input type="text" name="age" id="age"></label>
+            <button onclick="validarEdad()">Validar</button>
+            <p id="mensajeErrorEdad"></p>
+            <br>
+            <label for="password">Contraseña: <input type="password" name="password" id="password" required></label>
+            <button onclick="validarPassword()">Validar</button>
+            <p id="mensajeErrorPassword"></p>
+            <br>
+            <label for="email">Email: <input type="email" name="email" id="email" required></label>
+            <button onclick="validarEmail()">Validar</button>
+            <p id="mensajeErrorEmail"></p>
+            <br>
+        </form>
+
+        <script>
+            function validarNombre(){
+                const firstName = document.getElementById('first-name');
+
+                const nombre = firstName.value.trim();
+
+                const regex = /^[A-Za-z\s]+$/;
+
+                if (nombre.length === 0) {
+                    document.getElementById('mensajeError').innerHTML = "El nombre no puede estar vacío";
+                } else if (nombre.length > 20) {
+                    document.getElementById('mensajeError').innerHTML = "El nombre no puede tener más de 20 caracteres";
+                } else if (!regex.test(nombre)){
+                    document.getElementById('mensajeError').innerHTML = "El nombre solo puede contener letras y espacios";
+                }
+                else {
+                    document.getElementById('mensajeError').innerHTML = "";
+                }
+            }
+
+            function validarApellido(){
+                const lastName = document.getElementById('last-name');
+
+                const apellido = lastName.value.trim();
+
+                const regex = /^[A-Za-z\s]+$/;
+
+                if (apellido.length === 0) {
+                    document.getElementById('mensajeError2').innerHTML = "El apellido no puede estar vacío";
+                } else if (apellido.length > 20) {
+                    document.getElementById('mensajeError2').innerHTML = "El apellido no puede tener más de 20 caracteres";
+                } else if (!regex.test(apellido)){
+                    document.getElementById('mensajeError2').innerHTML = "El apellido solo puede contener letras y espacios";
+                }
+                else {
+                    document.getElementById('mensajeError2').innerHTML = "";
+                }
+            }
+
+            function validarEdad(){
+                const age = document.getElementById('age');
+
+                const edad = age.value.trim();
+
+                const regex = /^\d{1,3}$/;
+
+                if (!regex.test(edad)){
+                    document.getElementById('mensajeErrorEdad').innerHTML = "La edad solo puede contener números y hasta 3 dígitos";
+                }
+            }
+
+            function validarPassword(){
+                const password = document.getElementById('password');
+
+                const contrasenia = password.value.trim();
+
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+
+                if (contrasenia.length < 9) {
+                    document.getElementById('mensajeErrorPassword').innerHTML = "La contraseña debe tener entre 9 y 20 caracteres";
+                } else if (contrasenia.length > 20) {
+                    document.getElementById('mensajeErrorPassword').innerHTML = "La contraseña debe tener entre 9 y 20 caracteres";
+                } else if (!regex.test(contrasenia)){
+                    document.getElementById('mensajeErrorPassword').innerHTML = "La contraseña debe tener al menos una mayúscula, una minúscula y un número";
+                }
+                else {
+                    document.getElementById('mensajeError').innerHTML = "";
+                }
+            }
+
+            function validarEmail(){
+                const email = document.getElementById('email');
+
+                const correo = email.value.trim();
+
+                const regex = /^[a-zA-Z0-9._%+-]+@(google|outlook|icloud)\.com$/i;
+
+                if (!regex.test(correo)){
+                    document.getElementById('mensajeErrorEmail').innerHTML = "Debe ingresar un formato de email válido";
+                }
+                else {
+                    document.getElementById('mensajeError').innerHTML = "";
+                }
+            }
+        </script>
+    </main>
+</body>
+</html>
